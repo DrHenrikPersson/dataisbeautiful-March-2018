@@ -1,13 +1,15 @@
 '''
-2018-03-15
-Reboot of star visualization
+2018-03-17
+Visualize stars in HYG dataset. Renders stars with locations calculated as fnc of time.
+Dataset can be found here: https://github.com/astronexus/HYG-Database 
+
+Contribution to r/dataisbeautiful vizualisation competition, March 2018
+https://www.reddit.com/r/dataisbeautiful/comments/825mg6/battle_dataviz_battle_for_the_month_of_march_2018/ 
 '''
 
 import csv
 import numpy as np
 from PIL import Image, ImageFilter, ImageOps, ImageDraw, ImageFont
-
-
 
 '''
 Define
@@ -25,9 +27,7 @@ im_size_x = 1500#image width [px]
 im_size_y = 750#image height [px]
 direction=[0,-45] #direction of view [deg] [84,10] orion
 fov_hor=180
-
 time=range(-12000,1,100)
-
 
 '''
 Calculate
@@ -86,10 +86,10 @@ for ind in range(len(asc)):
     asc[ind]=(asc[ind]/24)*360 - 180#rescale and shift to interval -180:180
     v_asc[ind]=(v_asc[ind]/(1000*3600*24))*360
     v_dec[ind]=(v_dec[ind]/(1000*3600*24))*360
+
 '''
 create image
 '''
-
 #max_mag=max(mag)
 #first time loop, find brightest spot in movie
 print "Looking for max_mag in all frames"
@@ -148,8 +148,6 @@ for t in time:
                 #print str(ind)+"White"
                 tmp_col=([255,255,255])#white by default
                 
-                
-            
             tmp_x = int((asc_tmp-asc_min)/px_size_deg)
             tmp_y = int(im_size_y-(dec_tmp-dec_min)/px_size_deg)
             #draw star size based on magnitude
@@ -170,7 +168,6 @@ for t in time:
                         image_array[x_minor,y_minor,1]+=tmp_col[1]*mag[ind]/max_mag
                         image_array[x_minor,y_minor,2]+=tmp_col[2]*mag[ind]/max_mag
         
-
     '''
     Create image
     '''
