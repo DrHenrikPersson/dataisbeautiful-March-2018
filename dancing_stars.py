@@ -155,7 +155,7 @@ for t in time:
             '''
             #after playing around with making high magnitude stars larger, I decided against.
             #Code kept anyhow
-            #enlargement=int(round(mag[ind]/10)) #div 10 gives values 0,1,2 (based on vals in data
+            #enlargement=int(round(mag[ind]/10)) #div 10 gives values 0,1,2 (for values in dataset)
             if mag[ind]>=15:
                 enlargement=1
             if mag[ind]>=20:
@@ -207,4 +207,4 @@ for t in time:
     im_blur_con.save(outputlocation+savename,format="png")
     print "...Saved "  + savename
 
-print "\n\n finished"
+print "\n\n Finished rendering stars for all time points."
